@@ -16,18 +16,17 @@ export const Grid = glamorous.div(({ rows = 1, columns = 1, columnGap = '10px', 
 
 export const GridItem = glamorous.div(
     ({startingColumn = 1, startingRow = 1, columnSpan = 1, rowSpan = 1}) => {
-        const gridItemClass = `grid-item-column-${startingColumn}-span-${rowSpan}-row-${startingRow}-span-${rowSpan}`;
+        const gridItemClass = `grid-item-column-${startingColumn}-span-${columnSpan}-row-${startingRow}-span-${rowSpan}`;
         css.insert(`.${gridItemClass} {
-            -ms-grid-column: ${startingColumn};
-            -ms-grid-column-span: ${columnSpan};
-            -ms-grid-row: ${startingRow};
-            -ms-grid-row-span: ${rowSpan};
+            -ms-grid-column: ${2 * (startingColumn - 1) + 1};
+            -ms-grid-column-span: ${2 * (columnSpan - 1) + 1};
+            -ms-grid-row: ${2 * (startingRow - 1) + 1};
+            -ms-grid-row-span: ${2 * (rowSpan - 1) + 1};
         }`)
         return gridItemClass;
     },
     ({ startingColumn = 1, startingRow = 1, columnSpan = 1, rowSpan = 1 }) => ({
         background: 'rgb(160, 160, 160)',
-
         gridColumn: `${startingColumn} / span ${columnSpan}`,
         gridRow: `${startingRow} / span ${rowSpan}`,
     })
